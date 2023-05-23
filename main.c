@@ -16,8 +16,8 @@
 extern phrase color_palette;
 extern phrase sprite_fire0;
 
-#define SPRITEW 32
-#define SPRITEH 32
+#define SPRITEW 64
+#define SPRITEH 64
 
 #define ANIM_FIRE_LENGTH 9
 
@@ -29,7 +29,6 @@ extern phrase *fire_animation[ANIM_FIRE_LENGTH];
 
 /* 
     Animate Fire Demo using custom variable to control the frames.    
-
 */
 
 int main(int argc, char *argv[]) {
@@ -47,20 +46,18 @@ int main(int argc, char *argv[]) {
     fprintf(console, "Animated Fire Demo\n");    
   
   
-
-  
   // Normal Fire Animation
-  sprite *s01 = new_sprite(64,64,0,64,DEPTH16,&sprite_fire0);
+  sprite *s01 = new_sprite(SPRITEW,SPRITEH,0,64,DEPTH16,&sprite_fire0);
   attach_sprite_to_display_at_layer(s01, d, 0);
   // Reverse Frame Fire Animation
-  sprite *s02 = new_sprite(64,64,66,64,DEPTH16,&sprite_fire0);
+  sprite *s02 = new_sprite(SPRITEW,SPRITEH,66,64,DEPTH16,&sprite_fire0);
   attach_sprite_to_display_at_layer(s02, d, 0);
-  // Mirror Fire Animation
-  sprite *s03 = new_sprite(64,64,195,64,DEPTH16,&sprite_fire0);
+  // Mirror Fire Animation, Set the reflect flag, add width to x position
+  sprite *s03 = new_sprite(SPRITEW,SPRITEH,132+SPRITEW-1,64,DEPTH16,&sprite_fire0);
   attach_sprite_to_display_at_layer(s03, d, 0);
   s03->reflect = 1;
-  // Zoom Fire Animation
-  sprite *s04 = new_sprite(64,64,198,64,DEPTH16,&sprite_fire0);
+  // Zoom Fire Animation. Set the scaled flag.
+  sprite *s04 = new_sprite(SPRITEW,SPRITEH,198,64,DEPTH16,&sprite_fire0);
   attach_sprite_to_display_at_layer(s04, d, 0);
   s04->scaled = 1;  
   show_display(d);    
